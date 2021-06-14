@@ -836,6 +836,7 @@ local Status = redis:sismember(bot_id.."Dev2Bot", msg.sender_user_id_)
 if Status then
 Dev2Bot = true  
 end
+------------------------------------------------------------------------------------------------------------
 if Dev_VINES(msg) == true then  
 Dev2Bot = true  
 end  
@@ -847,6 +848,7 @@ local Status = redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_)
 if Status then
 deved = true  
 end
+------------------------------------------------------------------------------------------------------------
 if Dev_VINES(msg) == true then  
 deved = true  
 end  
