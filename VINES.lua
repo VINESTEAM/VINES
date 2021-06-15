@@ -159,7 +159,7 @@ return Dev_VINES_User
 end 
 function DeveloperBot(msg)  
 local Status = redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) 
-if Status or Dev_VINES(msg) or Bot(msg) then  
+if Status or Dev_VINES(msg) or Bot(msg) or Dev2Bot(msg) then  
 return true  
 else  
 return false  
@@ -167,7 +167,7 @@ end
 end
 function PresidentGroup(msg)
 local hash = redis:sismember(bot_id.."President:User"..msg.chat_id_, msg.sender_user_id_) 
-if hash or Dev_VINES(msg) or DeveloperBot(msg) or Bot(msg) then  
+if hash or Dev_VINES(msg) or DeveloperBot(msg) or Bot(msg) or Dev2Bot(msg) then    
 return true 
 else 
 return false 
@@ -175,7 +175,7 @@ end
 end
 function BasicBuilder(msg) 
 local hash = redis:sismember(bot_id..'Basic:User'..msg.chat_id_, msg.sender_user_id_) 
-if hash or Dev_VINES(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Bot(msg) then 
+if hash or Dev_VINES(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Bot(msg) or Dev2Bot(msg) then   
 return true
 else
 return false
@@ -183,7 +183,7 @@ end
 end
 function Constructor(msg) 
 local hash = redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) 
-if hash or Dev_VINES(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Bot(msg) then 
+if hash or Dev_VINES(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Bot(msg) or Dev2Bot(msg) then   
 return true
 else
 return false
@@ -191,7 +191,7 @@ end
 end
 function Owner(msg) 
 local hash = redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_)
-if hash or Dev_VINES(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Bot(msg) then 
+if hash or Dev_VINES(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Bot(msg) or Dev2Bot(msg) then   
 return true
 else
 return false
@@ -199,7 +199,7 @@ end
 end
 function Admin(msg) 
 local hash = redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_)
-if hash or Dev_VINES(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Owner(msg) or Bot(msg) then 
+if hash or Dev_VINES(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Owner(msg) or Bot(msg) or Dev2Bot(msg) then   
 return true
 else
 return false
@@ -207,7 +207,7 @@ end
 end
 function Vips(msg) 
 local hash = redis:sismember(bot_id..'Vip:Group'..msg.chat_id_,msg.sender_user_id_) 
-if hash or Dev_VINES(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Owner(msg) or Admin(msg) or Bot(msg) then 
+if hash or Dev_VINES(msg) or DeveloperBot(msg) or PresidentGroup(msg) or BasicBuilder(msg) or Constructor(msg) or Owner(msg) or Admin(msg) or Bot(msg) or Dev2Bot(msg) then   
 return true 
 else 
 return false 
@@ -230,6 +230,8 @@ function Rank_Checking(user_id,chat_id)
 if Dev_VINES_User(user_id) then
 Status = true  
 elseif tonumber(user_id) == tonumber(bot_id) then  
+Status = true  
+elseif redis:sismember(bot_id.."Dev2Bot", user_id) then
 Status = true  
 elseif redis:sismember(bot_id.."Developer:Bot", user_id) then
 Status = true  
@@ -258,6 +260,8 @@ elseif Dev_VINES_User(user_id) == true then
 Status = "المطور الاساسي"  
 elseif tonumber(user_id) == tonumber(bot_id) then  
 Status = "البوت"
+elseif redis:sismember(bot_id.."Dev2Bot", user_id) then
+Status = "المطور الاساسي²"  
 elseif redis:sismember(bot_id.."Developer:Bot", user_id) then
 Status = redis:get(bot_id.."Developer:Bot:Reply"..chat_id) or redis:get(bot_id.."Add:Validity:Users"..chat_id..user_id) or "المطور"  
 elseif redis:sismember(bot_id.."President:User"..chat_id, user_id) then
@@ -3414,7 +3418,7 @@ elseif text == "المنشئين الاساسين" or text == "الاساسين"
 tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da) 
 if da.status_.ID == "ChatMemberStatusCreator" then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_,msg.id_,'\n⌔︙بليز اشترك بالقناة البوت واستخدم البوت. \n⌔︙قناة البوت 📁.\n- '..redis:get(bot_id.."zzzKz"))   
+send(msg.chat_id_,msg.id_,'\n⌔︙بليز اشترك بالقناة البوت واستخدم البوت. \n⌔︙قناة البوت ??.\n- '..redis:get(bot_id.."zzzKz"))   
 return false
 end
 local list = redis:smembers(bot_id.."Basic:User"..msg.chat_id_)
@@ -6747,9 +6751,9 @@ send(msg.chat_id_, msg.id_,[[
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 𓂅 . [Source Channel](t.me/Vc33h)
 
-𓂅 . [DEV SORUCE ](t.me/NNUUU) 
+𓂅 . [dev soruce ](t.me/NNUUU) 
 
-𓂅 . [TWS VINES](t.me/Z_A_XBOT) 
+𓂅 . [VINES iNDT](t.me/Z_A_XBOT) 
  ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ 
 ]]) 
 elseif text == 'الاوامر' and Admin(msg) then
