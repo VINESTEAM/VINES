@@ -6,7 +6,7 @@ URL = dofile("./lib/url.lua")
 serpent = dofile("./lib/serpent.lua")
 redis = dofile("./lib/redis.lua").connect("127.0.0.1", 6379)
 Server_VINES = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
-DEV_Bot_VINES = 833156404  --- ايدي مطور السورس
+DEV_Bot_VINES = 665877797  --- ايدي مطور السورس
 ------------------------------------------------------------------------------------------------------------
 local function Load_File()
 local f = io.open("./Info_Sudo.lua", "r")  
@@ -1428,7 +1428,7 @@ end
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if BasicBuilder(msg) then 
+if not BasicBuilder(msg) then 
 if (msg.content_.ID == "MessagePhoto" or msg.content_.ID == "MessageSticker" or msg.content_.ID == "MessageVideo" or msg.content_.ID == "MessageAnimation" or msg.content_.ID == "MessageUnsupported") and redis:get(bot_id.."LoMsg"..msg.chat_id_) then
 redis:sadd(bot_id..":IdMsg:"..msg.chat_id_,msg.id_)
 GetTi = redis:get(bot_id..':TiMsg:'..msg.chat_id_)
@@ -1441,7 +1441,7 @@ end
 local DoTi = redis:smembers(bot_id..":IdMsg:"..msg.chat_id_)
 for k,v in pairs(DoTi) do
 if not redis:get(bot_id..":STiMsg:"..msg.chat_id_..v) then
-DeleteMessage(msg.chat_id_, {[0] = v}) 
+Delete_Message(msg.chat_id_, {[0] = v}) 
 redis:srem(bot_id..":IdMsg:"..msg.chat_id_,v)
 end
 end
@@ -2973,11 +2973,6 @@ if NewCmmd then
 data.message_.content_.text_ = (NewCmmd or data.message_.content_.text_)
 end
 end
-if text and text:match("^(وضع وقت التنظيف) (%d+)$") and BasicBuilder(msg) then
-local GetDo = tonumber(text:match("(%d+)"))
-redis:set(bot_id..':TiMsg:'..msg.chat_id_,GetDo) 
-send(msg.chat_id_, msg.id_,"*⌯︙تم وضع وقت التنظيف ( "..GetDo.." ) ساعه*")
-end
 if text == 'رفع النسخه الاحتياطيه' and tonumber(msg.reply_to_message_id_) > 0 and Dev_VINES(msg) then   
 tdcli_function({ID = "GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.reply_to_message_id_)},function(Arg, Data)   
 if Data.content_.document_ then 
@@ -3681,16 +3676,6 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 end
 end,nil)
-elseif text == "امسح" and BasicBuilder(msg) then 
-local cun = redis:smembers(bot_id..":IdMsg:"..msg.chat_id_)
-if #cun == 0 then 
-send(msg.chat_id_, msg.id_,"⌔︙لا توجد ميديا لحذفها") 
-return false
-end
-for k,v in pairs(cun) do 
-DeleteMessage(msg.chat_id_, {[0] = v})
-end
-send(msg.chat_id_, msg.id_,"⌔︙تم مسح الميديا بنجاح")
 elseif text == "رفع منشئ" and tonumber(msg.reply_to_message_id_) ~= 0 and BasicBuilder(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 send(msg.chat_id_,msg.id_,'\n⌔︙بليز اشترك بالقناة البوت واستخدم البوت. \n⌔︙قناة البوت 📁.\n- '..redis:get(bot_id.."zzzKz"))   
@@ -5274,6 +5259,20 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice='..URL.escape(audios.info)..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true")
 end
 end
+elseif text == 'عدد الوسائط' and BasicBuilder(msg) then   
+send(msg.chat_id_, msg.id_,'⌔︙العدد الكلي '..(redis:scard(bot_id..":IdMsg:"..msg.chat_id_) or 0)) 
+elseif text == "امسح" and BasicBuilder(msg) then 
+local IdMsgGet = redis:smembers(bot_id..":IdMsg:"..msg.chat_id_)
+for k,v in pairs(IdMsgGet) do 
+Delete_Message(msg.chat_id_, {[0] = v})
+end
+send(msg.chat_id_, msg.id_,"⌔︙تم مسح الميديا بنجاح")
+elseif text == 'تفعيل التنظيف التلقائي' and Owner(msg) then   
+redis:set(bot_id.."LoMsg"..msg.chat_id_,true) 
+send(msg.chat_id_, msg.id_,'⌔︙تم تفعيل التنظيف التلقائي ') 
+elseif text == 'تعطيل التنظيف التلقائي' and Owner(msg) then  
+redis:del(bot_id.."LoMsg"..msg.chat_id_) 
+send(msg.chat_id_, msg.id_,'⌔︙تم تعطيل التنظيف التلقائي') 
 elseif text == 'تفعيل الزخرفه' and Owner(msg) then   
 redis:del(bot_id..'Status:Lock:zhrf_Bots'..msg.chat_id_) 
 send(msg.chat_id_, msg.id_,'⌔︙تم تفعيل الزخرفه') 
@@ -5297,6 +5296,10 @@ i = i + 1
 t = t..i.."-  `"..v.."` \n"
 end
 send(msg.chat_id_, msg.id_, t..' — — — — — — — — —\n⌔︙اضغط على الاسم ليتم نسخه')
+elseif text and text:match('^وضع وقت التنظيف (%d+)$') and Owner(msg) then 
+local Num = text:match('^وضع وقت التنظيف (%d+)$')
+redis:set(bot_id..':TiMsg:'..msg.chat_id_,Num) 
+send(msg.chat_id_, msg.id_,"*⌯︙تم وضع وقت التنظيف ( "..Num.." ) ساعه*")
 elseif text and text:match("^برج (.*)$") and not redis:get(bot_id..'Status:Lock:brj_Bots'..msg.chat_id_) then
 local Textbrj = text:match("^برج (.*)$")
 gk = https.request('https://black-source.tk/BlackTeAM/Horoscopes.php?br='..URL.escape(Textbrj)..'')
@@ -6749,12 +6752,14 @@ send(msg.chat_id_, msg.id_,[[
 
 𓂅 .VINES TEAM 
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-𓂅 . [Source Channel](t.me/Vc33h)
+𓂅 . [Source Channel](t.me/JJJUU)
 
-𓂅 . [dev soruce ](t.me/NNUUU) 
+𓂅 . [Source Info ](t.me/VINES0) 
 
-𓂅 . [VINES iNDT](t.me/Z_A_XBOT) 
+𓂅 . [VINES iNDT](t.me/VINES0) 
+ 
  ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ 
+𓂅 . [TWS VINES](t.me/ubuuuBoT) 
 ]]) 
 elseif text == 'الاوامر' and Admin(msg) then
 send(msg.chat_id_, msg.id_,[[*
@@ -6766,7 +6771,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔︙ارسل { م4 } ← اوامر المنشئين
 ⌔︙ارسل { م5 } ← اوامر مطورين البوت
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔︙قناة البوت ←* @Vc33h
+⌔︙قناة البوت ←* @zzzKz
 ]]) 
 elseif text == 'م1' and Admin(msg) then
 send(msg.chat_id_, msg.id_,[[*
@@ -6802,7 +6807,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔︙الجهات
 ⌔︙الاشعارات
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔︙قناة البوت ←* @Vc33h
+⌔︙قناة البوت ←* @zzzKz
 ]]) 
 elseif text == 'م2' and Admin(msg) then
 send(msg.chat_id_, msg.id_,[[*
@@ -6841,7 +6846,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔︙المطرودين ، البوتات ، الصوره
 ⌔︙الصلاحيات ، الرابط
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔︙قناة البوت ←* @Vc33h
+⌔︙قناة البوت ←* @zzzKz
 ]]) 
 elseif text == 'م3' and Owner(msg) then
 send(msg.chat_id_, msg.id_,[[*
@@ -6872,7 +6877,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔︙اضف ، حذف ← { رد }
 ⌔︙تنظيف ← { عدد }
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔︙قناة البوت ←* @Vc33h
+⌔︙قناة البوت ←* @zzzKz
 ]]) 
 elseif text == 'م4' and Constructor(msg) then
 send(msg.chat_id_, msg.id_,[[*
@@ -6891,7 +6896,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔︙الاوامر المضافه ، مسح الاوامر المضافه
 ⌔︙تنزيل جميع الرتب
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔︙قناة البوت ←* @Vc33h
+⌔︙قناة البوت ←* @zzzKz
 ]]) 
 elseif text == 'م5' and DeveloperBot(msg)  then
 send(msg.chat_id_, msg.id_,[[*
@@ -6924,7 +6929,7 @@ send(msg.chat_id_, msg.id_,[[*
 ⌔︙اذاعه ، اذاعه بالتوجيه ، اذاعه بالتثبيت
 ⌔︙اذاعه خاص ، اذاعه خاص بالتوجيه 
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌔︙قناة البوت ←* @Vc33h
+⌔︙قناة البوت ←* @zzzKz
 ]]) 
 elseif text == 'الالعاب' then
 send(msg.chat_id_, msg.id_,[[*
