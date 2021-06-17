@@ -5250,7 +5250,7 @@ send(msg.chat_id_, msg.id_,"\n⌔︙عدد البوتات هنا : "..c.."\n⌔�
 end 
 end,nil)  
 elseif text == "غنيلي" then
-data,res = https.request('https://black-source.tk/BlackTeAM/audios.php')
+data,res = https.request('https://vvvzvv.ml/amirVois/Teland.php')
 if res == 200 then
 audios = json:decode(data)
 if audios.Info == true then
