@@ -143,8 +143,8 @@ return Dev_VINES
 end 
 function Bot(msg)  
 local idbot = false  
-if msg.sender_user_id_ == bot_id then  
-idbot = true  
+if tonumber(msg.sender_user_id_) == tonumber(bot_id) then  
+idbot = true    
 end  
 return idbot  
 end 
