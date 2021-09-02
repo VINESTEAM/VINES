@@ -7696,6 +7696,7 @@ send(msg.chat_id_, msg.id_,"᥀︙ حساب المنشئ محذوف")
 return false  
 end
 first_name = '['..b.first_name_..'](tg://user?id='..owner_id..')'
+first_Id = owner_id
 firsme = b.first_name_
 local UserName = (b.username_ or "zzzKz")
 local function getpro(extra, result, success)
@@ -7703,7 +7704,7 @@ if result.photos_[0] then
 keyboard = {}
 keyboard.inline_keyboard = {{{text =firsme, url = "https://t.me/"..UserName}},}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape('*᥀︙Creator Name* ↬ › '..first_name..'\n*᥀︙Creator Bio *↬ » '..getbio(owner_id))..'&photo='..result.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape('*᥀︙Creator Name* ↬ › '..first_name..'\n*᥀︙Creator Bio *↬ » '..getbio(first_Id))..'&photo='..result.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 else
 send(msg.chat_id_, msg.id_,'*᥀︙Creator Name* ↬ › '..first_name..'\n*᥀︙Creator Bio *↬ » '..getbio(owner_id))
 end end
