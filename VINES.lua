@@ -1889,7 +1889,7 @@ end
 if text == "مدير" or text == "ادمن" or text == "مميز" or text == "عضو" then
 local textn = redis:get(bot_id.."Add:Validity:Group:Rt:New"..msg.chat_id_..msg.sender_user_id_)  
 redis:set(bot_id.."Add:Validity:Group:Rt"..textn..msg.chat_id_,text)
-send(msg.chat_id_, msg.id_, "\n᥀︙تم اضافة الصلاحيه باسم ↫ { "..textn..' }') 
+send(msg.chat_id_, msg.id_, "\n᥀︙تم اضافة الصلاحيه باسم ← { "..textn..' }') 
 redis:del(bot_id.."Redis:Validity:Group"..msg.chat_id_..""..msg.sender_user_id_) 
 return false  
 end 
@@ -2112,7 +2112,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 if text and text:match("^(.*)$") then
 if redis:get(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
-send(msg.chat_id_, msg.id_, '\n᥀︙ارسل لي الرد لاضافته\n᥀︙تستطيع اضافة ↫ { ملف ، فديو ، نص ، ملصق ، بصمه ، متحركه }\n᥀︙تستطيع ايضا اضافة :\n᥀︙`#username` » معرف المستخدم \n᥀︙`#msgs` » عدد الرسائل\n᥀︙`#name` » اسم المستخدم\n᥀︙`#id` » ايدي المستخدم\n᥀︙`#stast` » موقع المستخدم \n᥀︙`#edit` » عدد السحكات ')
+send(msg.chat_id_, msg.id_, '\n᥀︙ارسل لي الرد لاضافته\n᥀︙تستطيع اضافة ← { ملف ، فديو ، نص ، ملصق ، بصمه ، متحركه }\n᥀︙تستطيع ايضا اضافة :\n᥀︙`#username` » معرف المستخدم \n᥀︙`#msgs` » عدد الرسائل\n᥀︙`#name` » اسم المستخدم\n᥀︙`#id` » ايدي المستخدم\n᥀︙`#stast` » موقع المستخدم \n᥀︙`#edit` » عدد السحكات ')
 redis:set(bot_id.."Set:Manager:rd"..msg.sender_user_id_..":"..msg.chat_id_,"true1")
 redis:set(bot_id.."Text:Manager"..msg.sender_user_id_..":"..msg.chat_id_, text)
 redis:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
@@ -2253,7 +2253,7 @@ end
 ------------------------------------------------------------------------------------------------------------
 if text and text:match("^(.*)$") then
 if redis:get(bot_id.."Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_) == "true" then
-send(msg.chat_id_, msg.id_, '\n᥀︙ارسل لي الكلمه الان \n᥀︙تستطيع اضافة ↫ { ملف ، فديو ، نص ، ملصق ، بصمه ، متحركه }\n᥀︙تستطيع ايضا اضافة :\n᥀︙`#username` » معرف المستخدم \n᥀︙`#msgs` » عدد الرسائل\n᥀︙`#name` » اسم المستخدم\n᥀︙`#id` » ايدي المستخدم\n᥀︙`#stast` » موقع المستخدم \n᥀︙`#edit` » عدد السحكات ')
+send(msg.chat_id_, msg.id_, '\n᥀︙ارسل لي الكلمه الان \n᥀︙تستطيع اضافة ← { ملف ، فديو ، نص ، ملصق ، بصمه ، متحركه }\n᥀︙تستطيع ايضا اضافة :\n᥀︙`#username` » معرف المستخدم \n᥀︙`#msgs` » عدد الرسائل\n᥀︙`#name` » اسم المستخدم\n᥀︙`#id` » ايدي المستخدم\n᥀︙`#stast` » موقع المستخدم \n᥀︙`#edit` » عدد السحكات ')
 redis:set(bot_id.."Set:Rd"..msg.sender_user_id_..":"..msg.chat_id_, "true1")
 redis:set(bot_id.."Text:Sudo:Bot"..msg.sender_user_id_..":"..msg.chat_id_, text)
 redis:sadd(bot_id.."List:Rd:Sudo", text)
@@ -2339,7 +2339,7 @@ if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 if Get_info then
 local TextS = "\n᥀︙قائمه ملفات متجر سورس VINES\n᥀︙الملفات المتوفره حاليا\n━━━━━━━━━━━━━\n\n"
-local TextE = "\n━━━━━━━━━━━━━\n᥀︙علامة ↫ {✔} تعني الملف مفعل\n᥀︙علامة ↫ {❌} تعني الملف معطل\n"
+local TextE = "\n━━━━━━━━━━━━━\n᥀︙علامة ← {✔} تعني الملف مفعل\n᥀︙علامة ← {❌} تعني الملف معطل\n"
 local NumFile = 0
 for name,Info in pairs(res.plugins_) do
 local Check_File_is_Found = io.open("Files/"..name,"r")
@@ -2366,7 +2366,7 @@ local File_Name = File_Get[2]..'.lua'
 local Get_Json, Res = https.request("https://raw.githubusercontent.com/VINESTEAM/Files_VINES/main/Files_VINES/"..File_Name)
 if Res == 200 then
 os.execute("rm -fr Files/"..File_Name)
-send(msg.chat_id_, msg.id_,"\n᥀︙الملف ↫ *"..File_Name.."*\n᥀︙تم تعطيله وحذفه من البوت بنجاح") 
+send(msg.chat_id_, msg.id_,"\n᥀︙الملف ← *"..File_Name.."*\n᥀︙تم تعطيله وحذفه من البوت بنجاح") 
 dofile('VINES.lua')  
 else
 send(msg.chat_id_, msg.id_,"᥀︙لا يوجد ملف بهاذا الاسم") 
@@ -2379,7 +2379,7 @@ if Res == 200 then
 local ChekAuto = io.open("Files/"..File_Name,'w+')
 ChekAuto:write(Get_Json)
 ChekAuto:close()
-send(msg.chat_id_, msg.id_,"\n᥀︙الملف ↫ *"..File_Name.."*\n᥀︙تم تفعيله في البوت بنجاح") 
+send(msg.chat_id_, msg.id_,"\n᥀︙الملف ← *"..File_Name.."*\n᥀︙تم تفعيله في البوت بنجاح") 
 dofile('VINES.lua')  
 else
 send(msg.chat_id_, msg.id_,"᥀︙لا يوجد ملف بهاذا الاسم") 
@@ -2530,7 +2530,7 @@ CmdStart = '\n᥀︙أهلآ بك في بوت '..Name_Bot..''..
 '\n᥀︙ارفعه ادمن {مشرف}'..
 '\n᥀︙ارسل كلمة { تفعيل } ليتم تفعيل المجموعه'..
 '\n᥀︙سيتم ترقيتك منشئ اساسي في البوت'..
-'\n᥀︙مطور البوت ↫ {['..UserName_Dev..']}'
+'\n᥀︙مطور البوت ← {['..UserName_Dev..']}'
 send(msg.chat_id_, msg.id_,CmdStart) 
 else
 send(msg.chat_id_, msg.id_,GetCmdStart) 
@@ -2622,7 +2622,7 @@ local msg_id = msg.id_/2097152/0.5
 send_inline_keyboard(msg.chat_id_,ZsText,nil,Zs,msg_id) 
 end
 if not Dev_VINES(msg) and not redis:sismember(bot_id..'User:Ban:Pv',msg.sender_user_id_) and not redis:get(bot_id..'Status:Lock:Twasl') then
-send(msg.sender_user_id_,msg.id_,'᥀︙تم ارسال رسالتك الى المطور ↫ { ['..UserName_Dev..'] }')
+send(msg.sender_user_id_,msg.id_,'᥀︙تم ارسال رسالتك الى المطور ← { ['..UserName_Dev..'] }')
 local List_id = {Id_Dev,msg.sender_user_id_}
 for k,v in pairs(List_id) do   
 tdcli_function({ID="GetChat",chat_id_=v},function(arg,chat) end,nil)
@@ -2902,7 +2902,7 @@ if sendok == 0 then
 send(msg.chat_id_, msg.id_,'᥀︙لا يوجد مشتركين وهميين')   
 else
 local ok = #pv - sendok
-send(msg.chat_id_, msg.id_,'*᥀︙عدد المشتركين الان ↫{ '..#pv..' }\n᥀︙تم العثور على ↫{ '..sendok..' } مشترك قام بحظر البوت\n᥀︙اصبح عدد المشتركين الان ↫{ '..ok..' } مشترك *')   
+send(msg.chat_id_, msg.id_,'*᥀︙عدد المشتركين الان ←{ '..#pv..' }\n᥀︙تم العثور على ←{ '..sendok..' } مشترك قام بحظر البوت\n᥀︙اصبح عدد المشتركين الان ←{ '..ok..' } مشترك *')   
 end
 end
 end,nil)
@@ -2948,7 +2948,7 @@ VINES = ''
 else
 VINES = '\n᥀︙ تم ازالة ~'..w..' مجموعه لان البوت عضو'
 end
-send(msg.chat_id_, msg.id_,'*᥀︙ عدد المجموعات الان ↫ { '..#group..' } مجموعه '..VINES..''..taha..'\n᥀︙اصبح عدد المجموعات الان ↫ { '..sendok..' } مجموعات*\n')   
+send(msg.chat_id_, msg.id_,'*᥀︙ عدد المجموعات الان ← { '..#group..' } مجموعه '..VINES..''..taha..'\n᥀︙اصبح عدد المجموعات الان ← { '..sendok..' } مجموعات*\n')   
 end
 end
 end,nil)
@@ -5805,13 +5805,13 @@ elseif text and text:match("^مسح صلاحيه (.*)$") and Admin(msg) or text 
 local ComdNew = text:match("^مسح صلاحيه (.*)$") or text:match("^حذف صلاحيه (.*)$")
 redis:del(bot_id.."Add:Validity:Group:Rt"..ComdNew..msg.chat_id_)
 redis:srem(bot_id.."Validitys:Group"..msg.chat_id_,ComdNew)  
-send(msg.chat_id_, msg.id_, "\n᥀︙تم مسح ↫ { "..ComdNew..' } من الصلاحيات') 
+send(msg.chat_id_, msg.id_, "\n᥀︙تم مسح ← { "..ComdNew..' } من الصلاحيات') 
 elseif text and text:match("^اضف صلاحيه (.*)$") and Admin(msg) then 
 local ComdNew = text:match("^اضف صلاحيه (.*)$")
 redis:set(bot_id.."Add:Validity:Group:Rt:New"..msg.chat_id_..msg.sender_user_id_,ComdNew)  
 redis:sadd(bot_id.."Validitys:Group"..msg.chat_id_,ComdNew)  
 redis:setex(bot_id.."Redis:Validity:Group"..msg.chat_id_..""..msg.sender_user_id_,200,true)  
-send(msg.chat_id_, msg.id_, "\n᥀︙ارسل نوع الصلاحيه كما مطلوب منك :\n᥀︙انواع الصلاحيات المطلوبه ↫ { عضو ، مميز  ، ادمن  ، مدير }") 
+send(msg.chat_id_, msg.id_, "\n᥀︙ارسل نوع الصلاحيه كما مطلوب منك :\n᥀︙انواع الصلاحيات المطلوبه ← { عضو ، مميز  ، ادمن  ، مدير }") 
 elseif text and text:match("^تغير رد المطور (.*)$") and Owner(msg) then
 local Teext = text:match("^تغير رد المطور (.*)$") 
 redis:set(bot_id.."Developer:Bot:Reply"..msg.chat_id_,Teext)
@@ -6138,7 +6138,7 @@ else
 first_name = ""
 end   
 if result.last_name_ then 
-last_name = "᥀︙ اسمك الثاني ↫ : `"..result.last_name_.."`" 
+last_name = "᥀︙ اسمك الثاني ← : `"..result.last_name_.."`" 
 else
 last_name = ""
 end  
@@ -6273,292 +6273,292 @@ else
 lock_tagservr = "{✖}"
 end
 if redis:get(bot_id.."Status:Lock:text"..msg.chat_id_) then
-lock_text = "↫ {✔️}"
+lock_text = "← {✔️}"
 else 
-lock_text = "↫ {✖}"
+lock_text = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:AddMempar"..msg.chat_id_) == "kick" then
-lock_add = "↫ {✔️}"
+lock_add = "← {✔️}"
 else 
-lock_add = "↫ {✖}"
+lock_add = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:Join"..msg.chat_id_) == "kick" then
-lock_join = "↫ {✔️}"
+lock_join = "← {✔️}"
 else 
-lock_join = "↫ {✖}"
+lock_join = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:edit"..msg.chat_id_) then
-lock_edit = "↫ {✔️}"
+lock_edit = "← {✔️}"
 else 
-lock_edit = "↫ {✖}"
+lock_edit = "← {✖}"
 end
 if redis:get(bot_id.."Chek:Welcome"..msg.chat_id_) then
-welcome = "↫ {✔️}"
+welcome = "← {✔️}"
 else 
-welcome = "↫ {✖}"
+welcome = "← {✖}"
 end
 if redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_, "Spam:User") == "kick" then 
-flood = "↫ { بالطرد }" 
+flood = "← { بالطرد }" 
 elseif redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") == "keed" then 
-flood = "↫ { بالتقيد }" 
+flood = "← { بالتقيد }" 
 elseif redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") == "mute" then 
-flood = "↫ { بالكتم }"   
+flood = "← { بالكتم }"   
 elseif redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") == "del" then 
-flood = "↫ {✔️}"
+flood = "← {✔️}"
 else 
-flood = "↫ {✖}" 
+flood = "← {✖}" 
 end
 if redis:get(bot_id.."Status:Lock:Photo"..msg.chat_id_) == "del" then
-lock_photo = "↫ {✔️}" 
+lock_photo = "← {✔️}" 
 elseif redis:get(bot_id.."Status:Lock:Photo"..msg.chat_id_) == "ked" then 
-lock_photo = "↫ { بالتقيد }"   
+lock_photo = "← { بالتقيد }"   
 elseif redis:get(bot_id.."Status:Lock:Photo"..msg.chat_id_) == "ktm" then 
-lock_photo = "↫ { بالكتم }"
+lock_photo = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:Photo"..msg.chat_id_) == "kick" then 
-lock_photo = "↫ { بالطرد }"   
+lock_photo = "← { بالطرد }"   
 else
-lock_photo = "↫ {✖}"   
+lock_photo = "← {✖}"   
 end
 if redis:get(bot_id.."Status:Lock:Contact"..msg.chat_id_) == "del" then
-lock_phon = "↫ {✔️}" 
+lock_phon = "← {✔️}" 
 elseif redis:get(bot_id.."Status:Lock:Contact"..msg.chat_id_) == "ked" then 
-lock_phon = "↫ { بالتقيد }"
+lock_phon = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:Contact"..msg.chat_id_) == "ktm" then 
-lock_phon = "↫ { بالكتم }"
+lock_phon = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:Contact"..msg.chat_id_) == "kick" then 
-lock_phon = "↫ { بالطرد }"
+lock_phon = "← { بالطرد }"
 else
-lock_phon = "↫ {✖}"
+lock_phon = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:Link"..msg.chat_id_) == "del" then
-lock_links = "↫ {✔️}"
+lock_links = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:Link"..msg.chat_id_) == "ked" then
-lock_links = "↫ { بالتقيد }"
+lock_links = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:Link"..msg.chat_id_) == "ktm" then
-lock_links = "↫ { بالكتم }"
+lock_links = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:Link"..msg.chat_id_) == "kick" then
-lock_links = "↫ { بالطرد }"
+lock_links = "← { بالطرد }"
 else
-lock_links = "↫ {✖}"
+lock_links = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:Cmd"..msg.chat_id_) == "del" then
-lock_cmds = "↫ {✔️}"
+lock_cmds = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:Cmd"..msg.chat_id_) == "ked" then
-lock_cmds = "↫ { بالتقيد }"
+lock_cmds = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:Cmd"..msg.chat_id_) == "ktm" then
-lock_cmds = "↫ { بالكتم }"   
+lock_cmds = "← { بالكتم }"   
 elseif redis:get(bot_id.."Status:Lock:Cmd"..msg.chat_id_) == "kick" then
-lock_cmds = "↫ { بالطرد }"
+lock_cmds = "← { بالطرد }"
 else
-lock_cmds = "↫ {✖}"
+lock_cmds = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:User:Name"..msg.chat_id_) == "del" then
-lock_user = "↫ {✔️}"
+lock_user = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:User:Name"..msg.chat_id_) == "ked" then
-lock_user = "↫ { بالتقيد }"
+lock_user = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:User:Name"..msg.chat_id_) == "ktm" then
-lock_user = "↫ { بالكتم }"
+lock_user = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:User:Name"..msg.chat_id_) == "kick" then
-lock_user = "↫ { بالطرد }"
+lock_user = "← { بالطرد }"
 else
-lock_user = "↫ {✖}"
+lock_user = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:hashtak"..msg.chat_id_) == "del" then
-lock_hash = "↫ {✔️}"
+lock_hash = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:hashtak"..msg.chat_id_) == "ked" then 
-lock_hash = "↫ { بالتقيد }"
+lock_hash = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:hashtak"..msg.chat_id_) == "ktm" then 
-lock_hash = "↫ { بالكتم }"
+lock_hash = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:hashtak"..msg.chat_id_) == "kick" then 
-lock_hash = "↫ { بالطرد }"
+lock_hash = "← { بالطرد }"
 else
-lock_hash = "↫ {✖}"
+lock_hash = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:vico"..msg.chat_id_) == "del" then
-lock_muse = "↫ {✔️}"
+lock_muse = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:vico"..msg.chat_id_) == "ked" then 
-lock_muse = "↫ { بالتقيد }"
+lock_muse = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:vico"..msg.chat_id_) == "ktm" then 
-lock_muse = "↫ { بالكتم }"
+lock_muse = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:vico"..msg.chat_id_) == "kick" then 
-lock_muse = "↫ { بالطرد }"
+lock_muse = "← { بالطرد }"
 else
-lock_muse = "↫ {✖}"
+lock_muse = "← {✖}"
 end 
 if redis:get(bot_id.."Status:Lock:Video"..msg.chat_id_) == "del" then
-lock_ved = "↫ {✔️}"
+lock_ved = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:Video"..msg.chat_id_) == "ked" then 
-lock_ved = "↫ { بالتقيد }"
+lock_ved = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:Video"..msg.chat_id_) == "ktm" then 
-lock_ved = "↫ { بالكتم }"
+lock_ved = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:Video"..msg.chat_id_) == "kick" then 
-lock_ved = "↫ { بالطرد }"
+lock_ved = "← { بالطرد }"
 else
-lock_ved = "↫ {✖}"
+lock_ved = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:Animation"..msg.chat_id_) == "del" then
-lock_gif = "↫ {✔️}"
+lock_gif = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:Animation"..msg.chat_id_) == "ked" then 
-lock_gif = "↫ { بالتقيد }"
+lock_gif = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:Animation"..msg.chat_id_) == "ktm" then 
-lock_gif = "↫ { بالكتم }"
+lock_gif = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:Animation"..msg.chat_id_) == "kick" then 
-lock_gif = "↫ { بالطرد }"
+lock_gif = "← { بالطرد }"
 else
-lock_gif = "↫ {✖}"
+lock_gif = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:Sticker"..msg.chat_id_) == "del" then
-lock_ste = "↫ {✔️}"
+lock_ste = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:Sticker"..msg.chat_id_) == "ked" then 
 lock_ste = "بالتقيد "
 elseif redis:get(bot_id.."Status:Lock:Sticker"..msg.chat_id_) == "ktm" then 
 lock_ste = "بالكتم "
 elseif redis:get(bot_id.."Status:Lock:Sticker"..msg.chat_id_) == "kick" then 
-lock_ste = "↫ { بالطرد }"
+lock_ste = "← { بالطرد }"
 else
-lock_ste = "↫ {✖}"
+lock_ste = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:geam"..msg.chat_id_) == "del" then
-lock_geam = "↫ {✔️}"
+lock_geam = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:geam"..msg.chat_id_) == "ked" then 
-lock_geam = "↫ { بالتقيد }"
+lock_geam = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:geam"..msg.chat_id_) == "ktm" then 
-lock_geam = "↫ { بالكتم }"
+lock_geam = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:geam"..msg.chat_id_) == "kick" then 
-lock_geam = "↫ { بالطرد }"
+lock_geam = "← { بالطرد }"
 else
-lock_geam = "↫ {✖}"
+lock_geam = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:vico"..msg.chat_id_) == "del" then
-lock_vico = "↫ {✔️}"
+lock_vico = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:vico"..msg.chat_id_) == "ked" then 
-lock_vico = "↫ { بالتقيد }"
+lock_vico = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:vico"..msg.chat_id_) == "ktm" then 
-lock_vico = "↫ { بالكتم }"
+lock_vico = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:vico"..msg.chat_id_) == "kick" then 
-lock_vico = "↫ { بالطرد }"
+lock_vico = "← { بالطرد }"
 else
-lock_vico = "↫ {✖}"
+lock_vico = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:Keyboard"..msg.chat_id_) == "del" then
-lock_inlin = "↫ {✔️}"
+lock_inlin = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:Keyboard"..msg.chat_id_) == "ked" then 
-lock_inlin = "↫ { بالتقيد }"
+lock_inlin = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:Keyboard"..msg.chat_id_) == "ktm" then 
-lock_inlin = "↫ { بالكتم }"
+lock_inlin = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:Keyboard"..msg.chat_id_) == "kick" then 
-lock_inlin = "↫ { بالطرد }"
+lock_inlin = "← { بالطرد }"
 else
-lock_inlin = "↫ {✖}"
+lock_inlin = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:forward"..msg.chat_id_) == "del" then
-lock_fwd = "↫ {✔️}"
+lock_fwd = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:forward"..msg.chat_id_) == "ked" then 
-lock_fwd = "↫ { بالتقيد }"
+lock_fwd = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:forward"..msg.chat_id_) == "ktm" then 
-lock_fwd = "↫ { بالكتم }"
+lock_fwd = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:forward"..msg.chat_id_) == "kick" then 
-lock_fwd = "↫ { بالطرد }"
+lock_fwd = "← { بالطرد }"
 else
-lock_fwd = "↫ {✖}"
+lock_fwd = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:Document"..msg.chat_id_) == "del" then
-lock_file = "↫ {✔️}"
+lock_file = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:Document"..msg.chat_id_) == "ked" then 
-lock_file = "↫ { بالتقيد }"
+lock_file = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:Document"..msg.chat_id_) == "ktm" then 
-lock_file = "↫ { بالكتم }"
+lock_file = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:Document"..msg.chat_id_) == "kick" then 
-lock_file = "↫ { بالطرد }"
+lock_file = "← { بالطرد }"
 else
-lock_file = "↫ {✖}"
+lock_file = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:Unsupported"..msg.chat_id_) == "del" then
-lock_self = "↫ {✔️}"
+lock_self = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:Unsupported"..msg.chat_id_) == "ked" then 
-lock_self = "↫ { بالتقيد }"
+lock_self = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:Unsupported"..msg.chat_id_) == "ktm" then 
-lock_self = "↫ { بالكتم }"
+lock_self = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:Unsupported"..msg.chat_id_) == "kick" then 
-lock_self = "↫ { بالطرد }"
+lock_self = "← { بالطرد }"
 else
-lock_self = "↫ {✖}"
+lock_self = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:Bot:kick"..msg.chat_id_) == "del" then
-lock_bots = "↫ {✔️}"
+lock_bots = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:Bot:kick"..msg.chat_id_) == "ked" then
-lock_bots = "↫ { بالتقيد }"   
+lock_bots = "← { بالتقيد }"   
 elseif redis:get(bot_id.."Status:Lock:Bot:kick"..msg.chat_id_) == "kick" then
-lock_bots = "↫ { بالطرد }"
+lock_bots = "← { بالطرد }"
 else
-lock_bots = "↫ {✖}"
+lock_bots = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:Markdaun"..msg.chat_id_) == "del" then
-lock_mark = "↫ {✔️}"
+lock_mark = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:Markdaun"..msg.chat_id_) == "ked" then 
-lock_mark = "↫ { بالتقيد }"
+lock_mark = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:Markdaun"..msg.chat_id_) == "ktm" then 
-lock_mark = "↫ { بالكتم }"
+lock_mark = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:Markdaun"..msg.chat_id_) == "kick" then 
-lock_mark = "↫ { بالطرد }"
+lock_mark = "← { بالطرد }"
 else
-lock_mark = "↫ {✖}"
+lock_mark = "← {✖}"
 end
 if redis:get(bot_id.."Status:Lock:Spam"..msg.chat_id_) == "del" then
-lock_spam = "↫ {✔️}"
+lock_spam = "← {✔️}"
 elseif redis:get(bot_id.."Status:Lock:Spam"..msg.chat_id_) == "ked" then 
-lock_spam = "↫ { بالتقيد }"
+lock_spam = "← { بالتقيد }"
 elseif redis:get(bot_id.."Status:Lock:Spam"..msg.chat_id_) == "ktm" then 
-lock_spam = "↫ { بالكتم }"
+lock_spam = "← { بالكتم }"
 elseif redis:get(bot_id.."Status:Lock:Spam"..msg.chat_id_) == "kick" then 
-lock_spam = "↫ { بالطرد }"
+lock_spam = "← { بالطرد }"
 else
-lock_spam = "↫ {✖}"
+lock_spam = "← {✖}"
 end
 if not redis:get(bot_id.."Status:Reply:Manager"..msg.chat_id_) then
-ReplyManager = "↫ {✔️}"
+ReplyManager = "← {✔️}"
 else
-ReplyManager = "↫ {✖}"
+ReplyManager = "← {✖}"
 end
 if not redis:get(bot_id.."Status:Reply:Sudo"..msg.chat_id_) then
-ReplySudo = "↫ {✔️}"
+ReplySudo = "← {✔️}"
 else
-ReplySudo = "↫ {✖}"
+ReplySudo = "← {✖}"
 end
 if not redis:get(bot_id.."Status:Lock:Id:Photo"..msg.chat_id_)  then
-IdPhoto = "↫ {✔️}"
+IdPhoto = "← {✔️}"
 else
-IdPhoto = "↫ {✖}"
+IdPhoto = "← {✖}"
 end
 if not redis:get(bot_id.."Status:Lock:Id:Py:Photo"..msg.chat_id_) then
-IdPyPhoto = "↫ {✔️}"
+IdPyPhoto = "← {✔️}"
 else
-IdPyPhoto = "↫ {✖}"
+IdPyPhoto = "← {✖}"
 end
 if not redis:get(bot_id.."Status:Cheking:Kick:Me:Group"..msg.chat_id_)  then
-KickMe = "↫ {✔️}"
+KickMe = "← {✔️}"
 else
-KickMe = "↫ {✖}"
+KickMe = "← {✖}"
 end
 if not redis:get(bot_id.."Status:Lock:Ban:Group"..msg.chat_id_)  then
-Banusers = "↫ {✔️}"
+Banusers = "← {✔️}"
 else
-Banusers = "↫ {✖}"
+Banusers = "← {✖}"
 end
 if not redis:get(bot_id.."Status:Cheking:Seted"..msg.chat_id_) then
-Setusers = "↫ {✔️}"
+Setusers = "← {✔️}"
 else
-Setusers = "↫ {✖}"
+Setusers = "← {✖}"
 end
 if redis:get(bot_id.."Link_Group"..msg.chat_id_) then
-Link_Group = "↫ {✔️}"
+Link_Group = "← {✔️}"
 else
-Link_Group = "↫ {✖}"
+Link_Group = "← {✖}"
 end
 if not redis:get(bot_id.."Status:Fun:Group"..msg.chat_id_) then
-FunGroup = "↫ {✔️}"
+FunGroup = "← {✔️}"
 else
-FunGroup = "↫ {✖}"
+FunGroup = "← {✖}"
 end
 local Num_Flood = redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Num:Spam") or 0
 send(msg.chat_id_, msg.id_,"*\n᥀︙اعدادات المجموعه "..
@@ -6604,7 +6604,7 @@ send(msg.chat_id_, msg.id_,"*\n᥀︙اعدادات المجموعه "..
 "\n".."᥀︙ردود المطور "..ReplySudo..
 "\n".."᥀︙اوامر التحشيش "..FunGroup..
 "\n".."᥀︙جلب الرابط "..Link_Group..
-"\n".."᥀︙عدد التكرار ↫ {"..Num_Flood.."}\n\n.*") 
+"\n".."᥀︙عدد التكرار ← {"..Num_Flood.."}\n\n.*") 
 elseif text == 'تعين الايدي' and Owner(msg) then
 redis:setex(bot_id.."Redis:Id:Group"..msg.chat_id_..""..msg.sender_user_id_,240,true)  
 send(msg.chat_id_, msg.id_,[[
@@ -6676,7 +6676,7 @@ end
 local Id = data.id_
 local DevZain = data.first_name_..' '..(data.last_name_ or "")
 local Status_Gps = Get_Rank(Id,msg.chat_id_)
-send(msg.chat_id_, msg.id_,'\n*᥀︙الاسم ↫ ('..DevZain..')\n᥀︙الايدي ↫ '..Id..'\n᥀︙المعرف ↫ *['..UserName_User..']*\n᥀︙الرتبة ↫ '..Status_Gps..'\n᥀︙نوع الكشف ↫بالرد*') 
+send(msg.chat_id_, msg.id_,'\n*᥀︙الاسم ← ('..DevZain..')\n᥀︙الايدي ← '..Id..'\n᥀︙المعرف ← *['..UserName_User..']*\n᥀︙الرتبة ← '..Status_Gps..'\n᥀︙نوع الكشف ←بالرد*') 
 end,nil)   
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_Status, nil)
@@ -6694,7 +6694,7 @@ end
 local Id = data.id_
 local DevZain = data.first_name_..' '..(data.last_name_ or "")
 local Status_Gps = Get_Rank(Id,msg.chat_id_)
-send(msg.chat_id_, msg.id_,'\n*᥀︙الاسم ↫ ('..DevZain..')\n᥀︙الايدي ↫ '..Id..'\n᥀︙المعرف ↫ *['..UserName_User..']*\n᥀︙الرتبة ↫ '..Status_Gps..'\n᥀︙نوع الكشف ↫بالمعرف*') 
+send(msg.chat_id_, msg.id_,'\n*᥀︙الاسم ← ('..DevZain..')\n᥀︙الايدي ← '..Id..'\n᥀︙المعرف ← *['..UserName_User..']*\n᥀︙الرتبة ← '..Status_Gps..'\n᥀︙نوع الكشف ←بالمعرف*') 
 end,nil)   
 else
 send(msg.chat_id_, msg.id_,'᥀︙لا يوجد حساب بهاذا المعرف')
@@ -6716,7 +6716,7 @@ end
 local Id = data.id_
 local DevZain = data.first_name_..' '..(data.last_name_ or "")
 local Status_Gps = Get_Rank(Id,msg.chat_id_)
-send(msg.chat_id_, msg.id_,'\n*᥀︙الاسم ↫ ('..DevZain..')\n᥀︙الايدي ↫ '..Id..'\n᥀︙المعرف ↫ *['..UserName_User..']*\n᥀︙الرتبة ↫ '..Status_Gps..'\n᥀︙نوع الكشف ↫بالايدي*') 
+send(msg.chat_id_, msg.id_,'\n*᥀︙الاسم ← ('..DevZain..')\n᥀︙الايدي ← '..Id..'\n᥀︙المعرف ← *['..UserName_User..']*\n᥀︙الرتبة ← '..Status_Gps..'\n᥀︙نوع الكشف ←بالايدي*') 
 end,nil)   
 end
 if text == 'ايدي' and tonumber(msg.reply_to_message_id_) == 0 and not redis:get(bot_id..'Status:Lock:Id:Photo'..msg.chat_id_) and GetChannelMember(msg) then  
@@ -6761,10 +6761,10 @@ local Get_Is_Id = Get_Is_Id:gsub('#game',Num_Games)
 local Get_Is_Id = Get_Is_Id:gsub('#photos',Total_Photp) 
 sendPhoto(msg.chat_id_,msg.id_,taha.photos_[0].sizes_[1].photo_.persistent_id_,Get_Is_Id)
 else
-sendPhoto(msg.chat_id_,msg.id_,taha.photos_[0].sizes_[1].photo_.persistent_id_,'᥀︙'..Description..'\n᥀︙ايديك ↫ '..Id..'\n᥀︙معرفك ↫ '..UserName_User..'\n᥀︙رتبتك ↫ '..Status_Gps..'\n᥀︙رسائلك ↫ '..NumMsg..'\n᥀︙السحكات ↫ '..NumMessageEdit..' \n᥀︙تتفاعلك ↫ '..TotalMsg..'\n᥀︙ مجوهراتك ↫ '..Num_Games)
+sendPhoto(msg.chat_id_,msg.id_,taha.photos_[0].sizes_[1].photo_.persistent_id_,'᥀︙'..Description..'\n᥀︙ايديك ← '..Id..'\n᥀︙معرفك ← '..UserName_User..'\n᥀︙رتبتك ← '..Status_Gps..'\n᥀︙رسائلك ← '..NumMsg..'\n᥀︙السحكات ← '..NumMessageEdit..' \n᥀︙تتفاعلك ← '..TotalMsg..'\n᥀︙ مجوهراتك ← '..Num_Games)
 end
 else
-send(msg.chat_id_, msg.id_,'\n*᥀︙ايديك ↫ '..Id..'\n᥀︙معرفك ↫ *['..UserName_User..']*\n᥀︙رتبتك ↫ '..Status_Gps..'\n᥀︙رسائلك ↫ '..NumMsg..'\n᥀︙السحكات ↫ '..NumMessageEdit..' \n᥀︙تتفاعلك ↫ '..TotalMsg..'\n᥀︙ مجوهراتك ↫ '..Num_Games..'*') 
+send(msg.chat_id_, msg.id_,'\n*᥀︙ايديك ← '..Id..'\n᥀︙معرفك ← *['..UserName_User..']*\n᥀︙رتبتك ← '..Status_Gps..'\n᥀︙رسائلك ← '..NumMsg..'\n᥀︙السحكات ← '..NumMessageEdit..' \n᥀︙تتفاعلك ← '..TotalMsg..'\n᥀︙ مجوهراتك ← '..Num_Games..'*') 
 end
 else
 if Get_Is_Id then
@@ -6780,7 +6780,7 @@ local Get_Is_Id = Get_Is_Id:gsub('#game',Num_Games)
 local Get_Is_Id = Get_Is_Id:gsub('#photos',Total_Photp) 
 send(msg.chat_id_, msg.id_,'['..Get_Is_Id..']') 
 else
-send(msg.chat_id_, msg.id_,'\n*᥀︙ايديك ↫ '..Id..'\n᥀︙معرفك ↫ *['..UserName_User..']*\n᥀︙رتبتك ↫ '..Status_Gps..'\n᥀︙رسائلك ↫ '..NumMsg..'\n᥀︙السحكات ↫ '..NumMessageEdit..' \n᥀︙تتفاعلك ↫ '..TotalMsg..'\n᥀︙ مجوهراتك ↫ '..Num_Games..'*') 
+send(msg.chat_id_, msg.id_,'\n*᥀︙ايديك ← '..Id..'\n᥀︙معرفك ← *['..UserName_User..']*\n᥀︙رتبتك ← '..Status_Gps..'\n᥀︙رسائلك ← '..NumMsg..'\n᥀︙السحكات ← '..NumMessageEdit..' \n᥀︙تتفاعلك ← '..TotalMsg..'\n᥀︙ مجوهراتك ← '..Num_Games..'*') 
 end
 end
 end,nil)   
@@ -6861,7 +6861,7 @@ local Status_Gps = Get_Rank(Id,msg.chat_id_)
 local NumMessageEdit = redis:get(bot_id..'Num:Message:Edit'..msg.chat_id_..data.id_) or 0
 local Num_Games = redis:get(bot_id.."Status:Msg_User"..msg.chat_id_..":"..data.id_) or 0
 local Add_Mem = redis:get(bot_id.."Num:Add:Memp"..msg.chat_id_..":"..data.id_) or 0
-send(msg.chat_id_, msg.id_,'\n*᥀︙ايديه ↫ '..Id..'\n᥀︙رسائله ↫ '..NumMsg..'\n᥀︙معرفه ↫ *['..UserName_User..']*\n᥀︙تفاعله ↫ '..TotalMsg..'\n᥀︙رتبته ↫ '..Status_Gps..'\n᥀︙تعديلاته ↫ '..NumMessageEdit..'\n᥀︙جهاته ↫ '..Add_Mem..'*') 
+send(msg.chat_id_, msg.id_,'\n*᥀︙ايديه ← '..Id..'\n᥀︙رسائله ← '..NumMsg..'\n᥀︙معرفه ← *['..UserName_User..']*\n᥀︙تفاعله ← '..TotalMsg..'\n᥀︙رتبته ← '..Status_Gps..'\n᥀︙تعديلاته ← '..NumMessageEdit..'\n᥀︙جهاته ← '..Add_Mem..'*') 
 end,nil)   
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_Status, nil)
@@ -6885,7 +6885,7 @@ local Status_Gps = Get_Rank(Id,msg.chat_id_)
 local NumMessageEdit = redis:get(bot_id..'Num:Message:Edit'..msg.chat_id_..data.id_) or 0
 local Num_Games = redis:get(bot_id.."Status:Msg_User"..msg.chat_id_..":"..data.id_) or 0
 local Add_Mem = redis:get(bot_id.."Num:Add:Memp"..msg.chat_id_..":"..data.id_) or 0
-send(msg.chat_id_, msg.id_,'\n*᥀︙ايديه ↫ '..Id..'\n᥀︙رسائله ↫ '..NumMsg..'\n᥀︙معرفه ↫ *['..UserName_User..']*\n᥀︙تفاعله ↫ '..TotalMsg..'\n᥀︙رتبته ↫ '..Status_Gps..'\n᥀︙تعديلاته ↫ '..NumMessageEdit..'\n᥀︙جهاته ↫ '..Add_Mem..'*') 
+send(msg.chat_id_, msg.id_,'\n*᥀︙ايديه ← '..Id..'\n᥀︙رسائله ← '..NumMsg..'\n᥀︙معرفه ← *['..UserName_User..']*\n᥀︙تفاعله ← '..TotalMsg..'\n᥀︙رتبته ← '..Status_Gps..'\n᥀︙تعديلاته ← '..NumMessageEdit..'\n᥀︙جهاته ← '..Add_Mem..'*') 
 end,nil)   
 else
 send(msg.chat_id_, msg.id_,'᥀︙لا يوجد حساب بهاذا المعرف')
@@ -7221,23 +7221,23 @@ send(msg.chat_id_, msg.id_,[[
 ]]) 
 elseif text == 'الاوامر' and Admin(msg) then
 send(msg.chat_id_, msg.id_,[[*
-᥀︙توجد ↫ 5 اوامر في البوت
+᥀︙توجد ← 5 اوامر في البوت
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙ارسل { م1 } ↫ اوامر الحمايه
-᥀︙ارسل { م2 } ↫ اوامر الادمنيه
-᥀︙ارسل { م3 } ↫ اوامر المدراء
-᥀︙ارسل { م4 } ↫ اوامر المنشئين
-᥀︙ارسل { م5 } ↫ اوامر مطورين البوت
+᥀︙ارسل { م1 } ← اوامر الحمايه
+᥀︙ارسل { م2 } ← اوامر الادمنيه
+᥀︙ارسل { م3 } ← اوامر المدراء
+᥀︙ارسل { م4 } ← اوامر المنشئين
+᥀︙ارسل { م5 } ← اوامر مطورين البوت
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙قناة البوت ↫* @Vc33h
+᥀︙قناة البوت ←* @Vc33h
 ]]) 
 elseif text == 'م1' and Admin(msg) then
 send(msg.chat_id_, msg.id_,[[*
 ᥀︙اوامر الحمايه اتبع مايلي ...
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙قفل ، فتح ↫ الامر 
+᥀︙قفل ، فتح ← الامر 
 ᥀︙تستطيع قفل حمايه كما يلي ...
-᥀︙↫ { بالتقيد ، بالطرد ، بالكتم }
+᥀︙← { بالتقيد ، بالطرد ، بالكتم }
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 ᥀︙الروابط
 ᥀︙المعرف
@@ -7265,13 +7265,13 @@ send(msg.chat_id_, msg.id_,[[*
 ᥀︙الجهات
 ᥀︙الاشعارات
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙قناة البوت ↫* @Vc33h
+᥀︙قناة البوت ←* @Vc33h
 ]]) 
 elseif text == 'م2' and Admin(msg) then
 send(msg.chat_id_, msg.id_,[[*
 ᥀︙اوامر ادمنية المجموعه ...
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙رفع، تنزيل ↫ مميز
+᥀︙رفع، تنزيل ← مميز
 ᥀︙تاك للكل ، عدد الكروب
 ᥀︙كتم ، حظر ، طرد ، تقيد
 ᥀︙الغاء كتم ، الغاء حظر ، الغاء تقيد
@@ -7287,93 +7287,93 @@ send(msg.chat_id_, msg.id_,[[*
 ᥀︙تثبيت ، الغاء تثبيت
 ᥀︙الرابط ، الاعدادات
 ᥀︙الترحيب ، القوانين
-᥀︙تفعيل ، تعطيل ↫ الترحيب
-᥀︙تفعيل ، تعطيل ↫ الرابط
+᥀︙تفعيل ، تعطيل ← الترحيب
+᥀︙تفعيل ، تعطيل ← الرابط
 ᥀︙اضف صلاحيه ، مسح صلاحيه 
 ᥀︙جهاتي ،ايدي ، رسائلي
 ᥀︙سحكاتي ، مجوهراتي
 ᥀︙كشف البوتات
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙وضع ، ضع ↫ الاوامر التاليه 
+᥀︙وضع ، ضع ← الاوامر التاليه 
 ᥀︙اسم ، رابط ، صوره
 ᥀︙قوانين ، وصف ، ترحيب
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙حذف ، مسح ↫ الاوامر التاليه
+᥀︙حذف ، مسح ← الاوامر التاليه
 ᥀︙قائمه المنع ، المحظورين 
 ᥀︙المميزين ، المكتومين ، القوانين
 ᥀︙المطرودين ، البوتات ، الصوره
 ᥀︙الصلاحيات ، الرابط
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙قناة البوت ↫* @Vc33h
+᥀︙قناة البوت ←* @Vc33h
 ]]) 
 elseif text == 'م3' and Owner(msg) then
 send(msg.chat_id_, msg.id_,[[*
 ᥀︙اوامر المدراء في المجموعه
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙رفع ، تنزيل ↫ ادمن
+᥀︙رفع ، تنزيل ← ادمن
 ᥀︙الادمنيه 
-᥀︙رفع، كشف ↫ القيود
-᥀︙تنزيل الكل ↫ { بالرد ، بالمعرف }
+᥀︙رفع، كشف ← القيود
+᥀︙تنزيل الكل ← { بالرد ، بالمعرف }
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 ᥀︙لتغيير رد الرتب في البوت
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙تغير رد ↫ {اسم الرتبه والنص} 
+᥀︙تغير رد ← {اسم الرتبه والنص} 
 ᥀︙المطور ، المنشئ الاساسي
 ᥀︙المنشئ ، المدير ، الادمن
 ᥀︙المميز ، العضو
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙تفعيل ، تعطيل ↫ الاوامر التاليه ↓
+᥀︙تفعيل ، تعطيل ← الاوامر التاليه ↓
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 ᥀︙الايدي ، الايدي بالصوره
 ᥀︙ردود المطور ، ردود المدير
 ᥀︙اطردني ، الالعاب ، الرفع
 ᥀︙الحظر ، الرابط ، اوامر التحشيش
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙تعين ، مسح ↫{ الايدي }
+᥀︙تعين ، مسح ←{ الايدي }
 ᥀︙رفع الادمنيه ، مسح الادمنيه
 ᥀︙ردود المدير ، مسح ردود المدير
-᥀︙اضف ، حذف ↫ { رد }
-᥀︙تنظيف ↫ { عدد }
+᥀︙اضف ، حذف ← { رد }
+᥀︙تنظيف ← { عدد }
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙قناة البوت ↫* @Vc33h
+᥀︙قناة البوت ←* @Vc33h
 ]]) 
 elseif text == 'م4' and Constructor(msg) then
 send(msg.chat_id_, msg.id_,[[*
 ᥀︙اوامر المنشئ الاساسي
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙رفع ، تنزيل ↫{ منشئ }
+᥀︙رفع ، تنزيل ←{ منشئ }
 ᥀︙المنشئين ، مسح المنشئين
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 ᥀︙اوامر المنشئ المجموعه
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙رفع ، تنزيل ↫ { مدير }
+᥀︙رفع ، تنزيل ← { مدير }
 ᥀︙المدراء ، مسح المدراء
-᥀︙اضف رسائل ↫ { بالرد او الايدي }
-᥀︙اضف مجوهرات ↫ { بالرد او الايدي }
-᥀︙اضف ، حذف ↫ { امر }
+᥀︙اضف رسائل ← { بالرد او الايدي }
+᥀︙اضف مجوهرات ← { بالرد او الايدي }
+᥀︙اضف ، حذف ← { امر }
 ᥀︙الاوامر المضافه ، مسح الاوامر المضافه
 ᥀︙تنزيل جميع الرتب
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙قناة البوت ↫* @Vc33h
+᥀︙قناة البوت ←* @Vc33h
 ]]) 
 elseif text == 'م5' and DeveloperBot(msg)  then
 send(msg.chat_id_, msg.id_,[[*
 ᥀︙اوامر المطور الاساسي  
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 ᥀︙حظر عام ، الغاء العام
-᥀︙اضف ، حذف ↫ { مطور } 
+᥀︙اضف ، حذف ← { مطور } 
 ᥀︙قائمه العام ، مسح قائمه العام
 ᥀︙المطورين ، مسح المطورين
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙اضف ، حذف ↫ { رد للكل }
-᥀︙وضع ، حذف ↫ { كليشه المطور } 
+᥀︙اضف ، حذف ← { رد للكل }
+᥀︙وضع ، حذف ← { كليشه المطور } 
 ᥀︙مسح ردود المطور ، ردود المطور 
 ᥀︙تحديث ،  تحديث السورس 
-᥀︙تعين عدد الاعضاء ↫ { العدد }
+᥀︙تعين عدد الاعضاء ← { العدد }
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙تفعيل ، تعطيل ↫ { الاوامر التاليه ↓}
+᥀︙تفعيل ، تعطيل ← { الاوامر التاليه ↓}
 ᥀︙البوت الخدمي ، المغادرة ، الاذاعه
-᥀︙ملف ↫ { اسم الملف }
+᥀︙ملف ← { اسم الملف }
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 ᥀︙مسح جميع الملفات 
 ᥀︙المتجر ، الملفات
@@ -7381,13 +7381,13 @@ send(msg.chat_id_, msg.id_,[[*
 ᥀︙اوامر المطور في البوت
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 ᥀︙تفعيل ، تعطيل ، الاحصائيات
-᥀︙رفع، تنزيل ↫ { منشئ اساسي }
+᥀︙رفع، تنزيل ← { منشئ اساسي }
 ᥀︙مسح الاساسين ، المنشئين الاساسين 
-᥀︙غادر ، غادر ↫ { والايدي }
+᥀︙غادر ، غادر ← { والايدي }
 ᥀︙اذاعه ، اذاعه بالتوجيه ، اذاعه بالتثبيت
 ᥀︙اذاعه خاص ، اذاعه خاص بالتوجيه 
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙قناة البوت ↫* @Vc33h
+᥀︙قناة البوت ←* @Vc33h
 ]]) 
 elseif text == 'الالعاب' then
 send(msg.chat_id_, msg.id_,[[*
@@ -7403,8 +7403,8 @@ send(msg.chat_id_, msg.id_,[[*
 ᥀︙لعبه الاسرع » الاسرع
 ᥀︙لعبة السمايلات » سمايلات
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-᥀︙مجوهراتي ↫ لعرض عدد الارباح
-᥀︙بيع مجوهراتي ↫ { العدد } ↫ لبيع كل مجوهره مقابل {50} رساله
+᥀︙مجوهراتي ← لعرض عدد الارباح
+᥀︙بيع مجوهراتي ← { العدد } ← لبيع كل مجوهره مقابل {50} رساله
 *]]) 
 elseif text == 'رسائلي' then
 local NumMsgg1 = redis:get(bot_id..'Num:Message:Userr'..msg.chat_id_..':'..msg.sender_user_id_) or 0
@@ -7422,7 +7422,7 @@ local Num = redis:get(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_
 if Num == 0 then 
 Text = "᥀︙لم تفز بأي مجوهره "
 else
-Text = "᥀︙عدد الجواهر التي ربحتها *↫ "..Num.." *"
+Text = "᥀︙عدد الجواهر التي ربحتها *← "..Num.." *"
 end
 send(msg.chat_id_, msg.id_,Text) 
 elseif text and text:match("^بيع مجوهراتي (%d+)$") then
@@ -7486,7 +7486,7 @@ if sendok == 0 then
 send(msg.chat_id_, msg.id_,'᥀︙لا يوجد مشتركين وهميين')   
 else
 local ok = #pv - sendok
-send(msg.chat_id_, msg.id_,'*᥀︙عدد المشتركين الان ↫{ '..#pv..' }\n᥀︙تم العثور على ↫{ '..sendok..' } مشترك قام بحظر البوت\n᥀︙اصبح عدد المشتركين الان ↫{ '..ok..' } مشترك *')   
+send(msg.chat_id_, msg.id_,'*᥀︙عدد المشتركين الان ←{ '..#pv..' }\n᥀︙تم العثور على ←{ '..sendok..' } مشترك قام بحظر البوت\n᥀︙اصبح عدد المشتركين الان ←{ '..ok..' } مشترك *')   
 end
 end
 end,nil)
@@ -7532,7 +7532,7 @@ VINES = ''
 else
 VINES = '\n᥀︙ تم ازالة ~'..w..' مجموعه لان البوت عضو'
 end
-send(msg.chat_id_, msg.id_,'*᥀︙ عدد المجموعات الان ↫ { '..#group..' } مجموعه '..VINES..''..taha..'\n᥀︙اصبح عدد المجموعات الان ↫ { '..sendok..' } مجموعات*\n')   
+send(msg.chat_id_, msg.id_,'*᥀︙ عدد المجموعات الان ← { '..#group..' } مجموعه '..VINES..''..taha..'\n᥀︙اصبح عدد المجموعات الان ← { '..sendok..' } مجموعات*\n')   
 end
 end
 end,nil)
@@ -7628,7 +7628,7 @@ GBan = "محظور عام"
 else
 GBan = "غير محظور عام"
 end
-send(msg.chat_id_, msg.id_,"᥀︙ الحظر العام ↫ "..GBan.."\n᥀︙ التقيد ↫ "..Zain.."\n᥀︙ الحظر ↫ "..Ban.."\n᥀︙ الكتم ↫ "..Muted)
+send(msg.chat_id_, msg.id_,"᥀︙ الحظر العام ← "..GBan.."\n᥀︙ التقيد ← "..Zain.."\n᥀︙ الحظر ← "..Ban.."\n᥀︙ الكتم ← "..Muted)
 else
 send(msg.chat_id_, msg.id_,"᥀︙ المعرف غلط")
 end
@@ -7656,7 +7656,7 @@ GBan = "محظور عام"
 else
 GBan = "غير محظور عام"
 end
-send(msg.chat_id_, msg.id_,"᥀︙ الحظر العام ↫ "..GBan.."\n᥀︙ التقيد ↫ "..Zain.."\n᥀︙ الحظر ↫ "..Ban.."\n᥀︙ الكتم ↫ "..Muted)
+send(msg.chat_id_, msg.id_,"᥀︙ الحظر العام ← "..GBan.."\n᥀︙ التقيد ← "..Zain.."\n᥀︙ الحظر ← "..Ban.."\n᥀︙ الكتم ← "..Muted)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_Status, nil)
 elseif text ==("رفع الادمنيه") and Owner(msg) then
@@ -7703,9 +7703,9 @@ if result.photos_[0] then
 keyboard = {}
 keyboard.inline_keyboard = {{{text =firsme, url = "https://t.me/"..UserName}},}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape('*᥀︙Creator Name* ↫ › '..first_name..'\n*᥀︙Creator Bio *↫ » '..getbio(owner_id))..'&photo='..result.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape('*᥀︙Creator Name* ↬ › '..first_name..'\n*᥀︙Creator Bio *↬ » '..getbio(owner_id))..'&photo='..result.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 else
-send(msg.chat_id_, msg.id_,'*᥀︙Creator Name* ↫ › '..first_name..'\n*᥀︙Creator Bio *↫ » '..getbio(owner_id))
+send(msg.chat_id_, msg.id_,'*᥀︙Creator Name* ↬ › '..first_name..'\n*᥀︙Creator Bio *↬ » '..getbio(owner_id))
 end end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = Id_Dev, offset_ = 0, limit_ = 1 }, getpro, nil)
 end,nil)   
@@ -7726,7 +7726,7 @@ send(msg.chat_id_, msg.id_,"᥀︙حساب المنشئ محذوف")
 return false  
 end
 local UserName = (b.username_ or "zzzKz")
-send(msg.chat_id_, msg.id_,"᥀︙تم ترقية منشئ المجموعه ↫ ["..b.first_name_.."](T.me/"..UserName..")")  
+send(msg.chat_id_, msg.id_,"᥀︙تم ترقية منشئ المجموعه ← ["..b.first_name_.."](T.me/"..UserName..")")  
 redis:sadd(bot_id.."President:User"..msg.chat_id_,b.id_)
 end,nil)   
 end,nil)   
@@ -7752,9 +7752,9 @@ if result.photos_[0] then
 keyboard = {}
 keyboard.inline_keyboard = {{{text =firsme, url = "https://t.me/"..UserName_Dev}},}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape('*᥀︙Dev Name* ↫ › '..first_name..'\n*᥀︙Dev User* ↫ @'..UserName_Dev..'\n*᥀︙Dev Id* ↫ ( `'..Id_Dev..'` )\n*᥀︙Dev Bio *↫ » '..getbio(Id_Dev))..'&photo='..result.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..token..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape('*᥀︙Dev Name* ↬ › '..first_name..'\n*᥀︙Dev User* ↬ @'..UserName_Dev..'\n*᥀︙Dev Id* ↬ ( `'..Id_Dev..'` )\n*᥀︙Dev Bio *↬ » '..getbio(Id_Dev))..'&photo='..result.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 else
-send(msg.chat_id_, msg.id_,'*᥀︙Dev Name* ↫ › '..first_name..'\n*᥀︙Dev User* ↫ @'..UserName_Dev..'\n*᥀︙Dev Id* ↫ ( `'..Id_Dev..'` )\n*᥀︙Dev Bio *↫ » '..getbio(Id_Dev))
+send(msg.chat_id_, msg.id_,'*᥀︙Dev Name* ↬ › '..first_name..'\n*᥀︙Dev User* ↬ @'..UserName_Dev..'\n*᥀︙Dev Id* ↬ ( `'..Id_Dev..'` )\n*᥀︙Dev Bio *↬ » '..getbio(Id_Dev))
 end end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = Id_Dev, offset_ = 0, limit_ = 1 }, getpro, nil)
 end
@@ -8098,7 +8098,7 @@ if NewCmmd then
 redis:del(bot_id.."Set:Za:Group:New1"..msg.chat_id_..":"..text)
 redis:del(bot_id.."Set:Za:Group:New"..msg.chat_id_)
 redis:srem(bot_id.."List:ZaYon:Group:New"..msg.chat_id_,text)
-send(msg.chat_id_, msg.id_,"᥀︙تم ازالة هاذا ↫ { "..text.." }")  
+send(msg.chat_id_, msg.id_,"᥀︙تم ازالة هاذا ← { "..text.." }")  
 else
 send(msg.chat_id_, msg.id_,"᥀︙لا يوجد امر بهاذا الاسم تاكد من الامر واعد المحاوله")  
 end
@@ -8118,7 +8118,7 @@ if text and redis:get(bot_id.."Set:Za:Group1"..msg.chat_id_..":"..msg.sender_use
 local NewCmd = redis:get(bot_id.."Set:Za:Group:New"..msg.chat_id_)
 redis:set(bot_id.."Set:Za:Group:New1"..msg.chat_id_..":"..text,NewCmd)
 redis:sadd(bot_id.."List:ZaYon:Group:New"..msg.chat_id_,text)
-send(msg.chat_id_, msg.id_,"᥀︙تم حفظ الامر باسم ↫ { "..text..' }')  
+send(msg.chat_id_, msg.id_,"᥀︙تم حفظ الامر باسم ← { "..text..' }')  
 redis:del(bot_id.."Set:Za:Group1"..msg.chat_id_..":"..msg.sender_user_id_)
 return false
 end
